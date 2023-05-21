@@ -12,15 +12,6 @@ function getData(url, callback) {
 
 // Function to generate HTML from JSON data
 function generateHTML(data, template) {
-  // Sort the JSON data by Release_Date in ascending order
-  data.sort(function (a, b) {
-    // Handle null values
-    if (a.Release_Date === "") return 1;
-    if (b.Release_Date === "") return -1;
-
-    return a.Release_Date - b.Release_Date;
-  });
-
   var container = document.getElementById("data-container");
   var html = "";
   var count = 0;
@@ -28,7 +19,9 @@ function generateHTML(data, template) {
     var movieHTML = template
       .replace("{count}", count++)
       .replace("{title}", data[i].Title)
-      .replace("{releaseDate}", data[i].Release_Date);
+      .replace("{releaseDate}", data[i].Release_Date)
+      .replace("{cineRating}", data[i].Cine_Rating)
+      .replace("{storyRating}", data[i].Story_Rating);
     html += movieHTML;
   }
   container.innerHTML = html;

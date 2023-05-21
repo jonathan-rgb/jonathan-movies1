@@ -1,51 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Display JSON Array in HTML</title>
-    <script>
-      // Function to make an HTTP request
-      function getData(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            callback(JSON.parse(xhr.responseText));
-          }
-        };
-        xhr.open("GET", url, true);
-        xhr.send();
-      }
-
-      // Function to generate HTML from JSON data
-      function generateHTML(data) {
-        // Sort the JSON data by Release_Date in ascending order
-        data.sort(function (a, b) {
-          // Handle null values
-          if (a.Release_Date === "") return 1;
-          if (b.Release_Date === "") return -1;
-
-          return a.Release_Date - b.Release_Date;
-        });
-
-        var container = document.getElementById("data-container");
-        var html = "";
-        var count = 0;
-        for (var i = 0; i < data.length; i++) {
-          html +=
-            "<h1>" +
-            count++ +
-            " " +
-            data[i].Title +
-            "</h1>" +
-            "<h2>" +
-            data[i].Release_Date +
-            "</h2>";
-        }
-        container.innerHTML = html;
-      }
-
-      // Fetch the JSON data and generate HTML
-      getData("data.json", generateHTML);
-    </script>
+    <title>Film che ha visto Jonathan</title>
+    <script src="movies.js"></script>
+    <link rel="stylesheet" type="text/css" href="movies.css" />
   </head>
   <body>
     <div id="data-container"></div>
